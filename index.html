@@ -2,64 +2,170 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Space</title>
-    <link rel="icon" type="image/jpeg" href="Untitled.jpg">
+    <title>Space Exploration</title>
+    <link rel="icon" type="image/jpeg" href="astronaut.jpg">
     <style>
         body {
             background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
             margin: 0;
+            padding: 40px 20px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
+            gap: 30px;
         }
+
+        h1 {
+            margin: 0;
+            font-size: 36px;
+            text-shadow: 0 0 10px #66fcf1;
+        }
+
         .container {
             display: flex;
-            gap: 50px;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
             text-align: center;
         }
-        img {
-            width: 200px;
-            height: 200px;
+
+        .card img {
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s;
         }
-        button {
-            background-color: #333;
+
+        .card img:hover {
+            transform: scale(1.05);
+        }
+
+        button, .btn {
+            background-color: #222;
             color: white;
             border: 1px solid white;
             padding: 10px 20px;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
             border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;
         }
-        button:hover {
-            background-color: #555;
+
+        button:hover, .btn:hover {
+            background-color: #444;
+        }
+
+        .extra-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .box {
+            background-color: #111;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .box h3 {
+            margin-top: 0;
+            color: #66fcf1;
+        }
+
+        iframe {
+            max-width: 100%;
+            border-radius: 10px;
+            border: 1px solid #444;
+        }
+
+        .links-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        audio {
+            border-radius: 20px;
         }
     </style>
 </head>
 <body>
 
+    <h1>Space Exploration</h1>
+
+    <audio controls loop>
+        <source src="Interstellar Official Soundtrack _ Cornfield Chase – Hans Zimmer _ WaterTower(MP3_160K).mp3" type="audio/mpeg">
+    </audio>
+
     <div class="container">
-        <div>
+        <div class="card">
             <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" alt="Earth">
             <br>
             <a href="earth.html"><button>Earth Details</button></a>
         </div>
 
-        <div>
+        <div class="card">
             <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg" alt="Moon">
             <br>
             <a href="moon.html"><button>Moon Details</button></a>
         </div>
 
-        <div>
+        <div class="card">
             <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" alt="Mars">
             <br>
             <a href="mars.html"><button>Mars Details</button></a>
         </div>
     </div>
+
+    <div class="extra-section">
+        <div class="box">
+            <h3>💡 Fact of the Day</h3>
+            <p>One day on Venus is longer than one full year on Venus!</p>
+        </div>
+
+        <div class="box">
+            <h3>🚀 Next Mission Launch</h3>
+            <p id="countdown" style="font-size: 20px; font-weight: bold; color: #45a29e;"></p>
+        </div>
+
+       <iframe width="560" height="315" src="https://www.youtube.com/embed/fO9e9jnhYK8" title="Space Live Stream" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="links-group">
+            <a href="https://en.wikipedia.org/wiki/Outer_space" target="_blank" class="btn">🌐 Wikipedia Space Article</a>
+            <a href="mailto:yossefhossam1230@gmail.com" class="btn">📧 Contact Us</a>
+        </div>
+    </div>
+
+    <script>
+        let dest = new Date().getTime() + (142 * 24 * 60 * 60 * 1000);
+        let x = setInterval(function() {
+            let now = new Date().getTime();
+            let diff = dest - now;
+            let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+        }, 1000);
+    </script>
 
 </body>
 </html>
